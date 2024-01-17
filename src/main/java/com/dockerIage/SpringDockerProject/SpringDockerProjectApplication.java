@@ -2,20 +2,26 @@ package com.dockerIage.SpringDockerProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SpringDockerProjectApplication {
+public class SpringDockerProjectApplication extends SpringBootServletInitializer {
 
 	@GetMapping("/message")
-	public String welcomeMessage()
-	{
+	public String welcomeMessage() {
 		return "Docker image created successfully";
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDockerProjectApplication.class, args);
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(SpringDockerProjectApplication.class);
+	}
 }
